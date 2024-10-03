@@ -22,6 +22,16 @@ mongoose
 // Post api logic
 app.post("/api/users/post", controller.PostUser);
 
+// get all data
+app.get("/api/users/GetAllData", controller.GetAllData);
+
+// Get One Data Using Find Using Query Method
+app.get("/api/users/GetOneData", controller.GetOneData);
+
+// get All data that matches the query
+
+app.get("/api/users/GetAllPatiData", controller.GetAllParticularData);
+
 // starting the server
 app.listen(Port, "127.0.0.1", () => {
   console.log("Server Started At " + Port);
