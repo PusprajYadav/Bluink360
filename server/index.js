@@ -11,11 +11,11 @@ const mongoose = require("mongoose");
 const Port = 5000;
 
 // alll controller files imported
+const RegisterationController = require("./Controller/RegisterContr");
+const AlumaniController = require("./Controller/AlumanaiCont");
 const JobController = require("./Controller/JobController");
 const EventController = require("./Controller/EventController");
-const AlumaniController = require("./Controller/AlumanaiCont");
-const AlumaniController2 = require("./Controller/AlumanaiCont2");
-const RegisterationController = require("./Controller/RegisterContr");
+const BlogController = require("./Controller/BlogController");
 
 // middlewares
 app.use(cors()); // connection from forntend to backend
@@ -24,7 +24,9 @@ app.use(bodyParser.json());
 
 // db connection
 mongoose
-  .connect("mongodb://127.0.0.1:27017/Juzzit")
+  .connect(
+    "mongodb+srv://Bluink360:Bluink360@cluster0.zwv76.mongodb.net/Bluink360"
+  )
   .then((res) => {
     console.log("MongoDB Connected Successfully ");
   })
@@ -44,15 +46,6 @@ app.delete("/api/DeleteAlumanai/:id", AlumaniController.DeleteAlumanai);
 // update alumanai data
 app.put("/api/UpdateAlumani/:id", AlumaniController.UpadetAlumani); // pending not working
 
-//alumani 2
-app.post("/api/Admin2/Alumanai2", AlumaniController2.AlumaniPost2);
-//get all Alumani
-app.get("/api/GetAllAlumanai2", AlumaniController2.GetAllAlumani2);
-// delete alumani data
-app.delete("/api/DeleteAlumanai2/:id", AlumaniController2.DeleteAlumanai2);
-// update alumanai data
-app.put("/api/UpdateAlumani2/:id", AlumaniController2.UpadetAlumani2); // pending not working
-
 // event post
 app.post("/api/Admin/Event", EventController.EventPost);
 //get all events
@@ -62,7 +55,7 @@ app.delete("/api/DeleteEventbybId/:id", EventController.DeleteEvent);
 // Update by id
 app.put("/api/UpdateEventbyId/:id", EventController.UpdateEvent);
 
-//job posting from admin panel
+//job posting from Admin panel
 app.post("/api/Admin/Job", JobController.JobPosts);
 //get job
 app.get("/api/GetAllJob", JobController.GetJob);
@@ -71,7 +64,18 @@ app.delete("/api/DeleteJobById/:id", JobController.DeleteJob);
 // update job data
 app.put("/api/UpdateJob/:id", JobController.UpdateJob);
 
-// for fronyt end
+// Blog  posting from Admin Panel
+app.post("/api/Admin/Blogs", BlogController.BlogPost);
+
+//get Blog
+app.get("/api/GetAllBlog", BlogController.GetAllBlogs);
+
+//DeleteBlog
+app.delete("/api/DeleteBlogById/:id", BlogController.DeleteBlog);
+
+//DeleteBlog
+
+// for front end
 // only post and get for registration
 
 app.post("/api/Registraion", RegisterationController.PostUser);
